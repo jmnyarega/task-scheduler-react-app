@@ -10,15 +10,15 @@ class Transaction extends React.Component {
     super(props);
     this.state = {
       location: "",
-      access_code: "",
-      splash_page: "",
-      mpesa: "",
-      autoplay: "",
+      access_code: 0,
+      splash_page: 0,
+      mpesa: 0,
+      autoplay: 0,
       comments: "",
       registration_status: "",
       customer_first_name: "",
       customer_last_name: "",
-      customer_age: "",
+      customer_age: 0,
     }
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -32,9 +32,7 @@ class Transaction extends React.Component {
 
   onSubmit(e) {
     e.preventDefault();
-    console.log(this.props);
     this.props.addTransaction(this.state);
-    // send to database for add transaction
   }
 
   render() {
@@ -61,24 +59,24 @@ class Transaction extends React.Component {
                   onChange={this.onChange}/> <br />
 
                 <label htmlFor="splash_page">Splash Page</label>
-                <select id="splash_page" onChange={this.onChange}>
-                  <option value="">Choose Option</option>
-                  <option value="0">No</option>
-                  <option value="1">Yes</option>
+                <select id="splash_page" name="splash_page" onChange={this.onChange}>
+                  <option value={0}>Choose Option</option>
+                  <option value={0}>No</option>
+                  <option value={1}>Yes</option>
                 </select> <br />
 
                 <label htmlFor="mpesa">Mpesa</label>
-                <select id="mpesa" onChange={this.onChange}>
-                  <option value="">Choose Option</option>
-                  <option value="0">No</option>
-                  <option value="1">Yes</option>
+                <select id="mpesa" name="mpesa" onChange={this.onChange}>
+                  <option value={0}>Choose Option</option>
+                  <option value={0}>No</option>
+                  <option value={0}>Yes</option>
                 </select> <br />
 
                 <label htmlFor="autoplay">Autoplay</label>
-                <select id="autoplay" onChange={this.onChange}>
-                  <option value="">Choose Option</option>
-                  <option value="0">No</option>
-                  <option value="1">Yes</option>
+                <select id="autoplay" name="autoplay" onChange={this.onChange}>
+                  <option value={0}>Choose Option</option>
+                  <option value={0}>No</option>
+                  <option value={1}>Yes</option>
                 </select> <br />
 
                 <label htmlFor="comments">Comments</label>

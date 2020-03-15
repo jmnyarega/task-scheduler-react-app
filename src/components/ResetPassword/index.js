@@ -11,6 +11,7 @@ class ResetPassword extends React.Component {
       current_password: "",
       new_password: "",
       confirm_password: "",
+      id: 1,
     }
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -25,7 +26,6 @@ class ResetPassword extends React.Component {
   onSubmit(e) {
     e.preventDefault();
     this.props.resetPassword(this.state);
-    // send to database for password reset
   }
 
   render() {

@@ -28,7 +28,6 @@ class Registration extends React.Component {
   onSubmit(e) {
     e.preventDefault();
     this.props.signUp(this.state)
-    // Send to database for registration
   }
 
   render() {
