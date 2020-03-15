@@ -1,4 +1,7 @@
 import React from "react";
+import { connect } from 'react-redux'
+
+import { addTransaction } from "./actions/transactions";
 
 class Transaction extends React.Component {
   constructor(props) {
@@ -24,7 +27,8 @@ class Transaction extends React.Component {
 
   onSubmit(e) {
     e.preventDefault();
-    console.log(this.state);
+    console.log(this.props);
+    this.props.addTransaction(this.state);
     // send to database for add transaction
   }
 
@@ -92,4 +96,14 @@ class Transaction extends React.Component {
   }
 }
 
-export default Transaction;
+const mapStateToProps = state => {
+  return { transactions: state }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    addTransaction: data => { dispatch(addTransaction(data)) }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Transaction)

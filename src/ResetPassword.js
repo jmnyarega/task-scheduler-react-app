@@ -1,4 +1,7 @@
 import React from "react";
+import { connect } from "react-redux";
+
+import { resetPassword } from "./actions/user";
 
 class ResetPassword extends React.Component {
   constructor(props) {
@@ -20,6 +23,7 @@ class ResetPassword extends React.Component {
 
   onSubmit(e) {
     e.preventDefault();
+    this.props.resetPassword(this.state);
     // send to database for password reset
   }
 
@@ -59,4 +63,14 @@ class ResetPassword extends React.Component {
   }
 }
 
-export default ResetPassword;
+const mapStateToProps = state => {
+  return { user: state }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    resetPassword: data => dispatch(resetPassword(data))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ResetPassword);

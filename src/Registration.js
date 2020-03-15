@@ -1,4 +1,7 @@
 import React from "react";
+import { connect } from "react-redux";
+
+import { signUp } from "./actions/user";
 
 class Registration extends React.Component {
   constructor(props) {
@@ -21,8 +24,8 @@ class Registration extends React.Component {
 
   onSubmit(e) {
     e.preventDefault();
-    console.log(this.state);
-    // send to database for registration
+    this.props.signUp(this.state)
+    // Send to database for registration
   }
 
   render() {
@@ -68,4 +71,12 @@ class Registration extends React.Component {
   }
 }
 
-export default Registration;
+const mapStateToProps = state => {
+  return { user: state }
+}
+
+const mapDispatchToProps = dispatch => {
+  return { signUp:  data => dispatch(signUp(data)) }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Registration);
