@@ -1,7 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { resetPassword } from "./actions/user";
+import { resetPassword } from "../../actions/user";
+import "./index.css";
 
 class ResetPassword extends React.Component {
   constructor(props) {
@@ -29,7 +30,7 @@ class ResetPassword extends React.Component {
 
   render() {
     return (
-      <div>
+      <div id="reset-form">
         <fieldset>
           <legend>Reset Password</legend>
           <form onSubmit={this.onSubmit}>

@@ -1,0 +1,14 @@
+#transaction-form {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 5%;
+}
+
+#transaction-details {
+  display: flex;
+  justify-content: space-between;
+}
+
+#transaction-info > p, #customer-info > p {
+  font-weight: bold;
+}

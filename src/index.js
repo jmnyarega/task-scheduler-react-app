@@ -1,24 +1,16 @@
 import React from "react";
-import ReactDom from "react-dom";
-import { createStore } from "redux";
+import { render } from "react-dom";
 import { Provider } from "react-redux";
-import { composeWithDevTools } from "redux-devtools-extension";
+import { BrowserRouter } from "react-router-dom";
 
-import Login from "./Login";
-import Registration from "./Registration";
-import Transaction from "./Transaction";
-import ResetPassword from "./ResetPassword";
+import App from "./routes";
+import store from "./store";
 
-import rootReducer from "./reducers"
-
-
-const store = createStore(rootReducer, composeWithDevTools());
-const Index = () => {
-  return (
-   <Provider store={store}>
-      <Registration />
-    </Provider>
-  )
-}
-
-ReactDom.render(<Index/>, document.getElementById("root"));
+render(
+  <Provider store={store}>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </Provider>,
+  document.getElementById("root")
+);

@@ -1,7 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
-import { signUp } from "./actions/user";
+import { signUp } from "../../actions/user";
+
+import "./index.css";
 
 class Registration extends React.Component {
   constructor(props) {
@@ -30,41 +33,42 @@ class Registration extends React.Component {
 
   render() {
     return (
-      <div>
+      <div id="register-form">
         <fieldset>
           <legend>Registration Page</legend>
           <form onSubmit={this.onSubmit}>
 
-            <label htmlFor="firstName">First Name:</label>
+            <label htmlFor="firstName">First Name</label>
             <input
               type="text"
               id="firstName"
               name="firstName"
-              onChange={this.onChange}/><br />
+              onChange={this.onChange}/> <br/>
 
-            <label htmlFor="lastName">Last Name:</label>
+            <label htmlFor="lastName">Last Name</label>
             <input
               type="text"
               id="lastName"
               name="lastName"
-              onChange={this.onChange}/><br />
+                  onChange={this.onChange}/><br/>
 
             <label htmlFor="username">Username</label>
             <input
               type="text"
               id="username"
               name="username"
-              onChange={this.onChange}/><br />
+              onChange={this.onChange}/> <br/>
 
             <label htmlFor="password">Password</label>
             <input
               type="password"
               id="password"
               name="password"
-              onChange={this.onChange}/><br />
+              onChange={this.onChange}/> <br />
 
             <input type="submit" value="Register" />
           </form>
+          <div>Already registered? login <Link to="/transaction"> here </Link></div>
         </fieldset>
       </div>
     )
