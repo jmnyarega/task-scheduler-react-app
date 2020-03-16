@@ -2,7 +2,6 @@ import axios from "axios";
 
 export const addTokenToLocalStorage = token => {
   const { localStorage } = window;
-  console.log(token);
   localStorage.setItem("jwt", token);
 }
 

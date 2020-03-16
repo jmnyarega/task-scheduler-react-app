@@ -46,10 +46,10 @@ class TransactionDetails extends React.Component {
              <p>{(Tasks[0].status || "inactive")}</p>
              <p>Assigned: {(Tasks[0].assigned || "not assigned yet")}</p>
              <p>Complete: {(Tasks[0].completed || "not completed yet")}</p>
+             <p>In Progress: {(Tasks[0].in_progress || "not running yet")}</p>
              <p>Access Code: {(Tasks[0].access_code || "no access code")}</p>
              <p>Autoplay: {(Tasks[0].autoplay || "no autoplay")}</p>
              <p>Deffered: {(Tasks[0].deffered || "")}</p>
-             <p>In Progress: {(Tasks[0].in_progress || "not running yet")}</p>
            </div>
         </div>
       </fieldset>

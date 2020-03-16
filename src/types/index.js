@@ -5,3 +5,6 @@ export const ADD_TRANSACTION      = "ADD_TRANSACTION";
 export const DELETE_TRANSACTION   = "DELETE_TRANSACTION";
 export const UPDATE_TRANSACTION   = "UPDATE_TRANSACTION";
 export const GET_ALL_TRANSACTIONS = "GET_ALL_TRANSACTIONS";
+export const FAIL_LOGIN           = "FAIL_LOGIN";
+export const FAIL_RESET           = "FAIL_RESET";
+export const FAIL_SIGNUP          = "FAIL_SIGNUP";

@@ -6,6 +6,13 @@ const resetPassword = (state=[], action) => {
       return {
         ...state,
         ...action.payload,
+        message: (state.message || {})["reset"] = action.message,
+      }
+
+    case types.FAIL_RESET:
+      return {
+        ...state,
+        message: (state.message || {})["reset"] = action.message,
       }
     default:
       return state

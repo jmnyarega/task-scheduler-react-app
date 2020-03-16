@@ -5,45 +5,62 @@ import { API_URL } from "../constants";
 
 import { addTokenToLocalStorage, removeLocalStorageToken } from "../helpers/auth";
 
-export const loginActionCreator = payload => ({
+const loginActionCreator = payload => ({
   type: types.LOGIN,
   payload,
+  message: "login successful",
 });
 
-export const signUpActionCreator = payload => ({
+const signUpActionCreator = payload => ({
   type: types.SIGNUP,
   payload,
+  message: "sign up successful",
 });
 
-export const resetPasswordActiobCreator = payload => ({
+const resetPasswordActiobCreator = payload => ({
   type: types.RESET_PASSWORD,
   payload,
+  message: "reset successful",
+});
+
+const faillureLoginActionCreator = message => ({
+  type: types.FAIL_LOGIN,
+  message,
+});
+
+const faillurePasswordResetActionCreator = message => ({
+  type: types.FAIL_RESET,
+  message,
+});
+
+const faillureSignupActionCreator = message => ({
+  type: types.FAIL_SIGNUP,
+  message,
 });
 
 export function login(data) {
   return dispatch => {
-    dispatch(loginActionCreator(data));
     axios.post(`${API_URL}/login`, data).then(res => {
       addTokenToLocalStorage(res.data.token)
-    }).catch(err => console.log(err))
+      dispatch(loginActionCreator(res.data.user));
+    }).catch(err => dispatch(faillureLoginActionCreator(err.message)))
   }
 }
 
 export function signUp(data) {
   return dispatch => {
-    dispatch(signUpActionCreator(data));
-    axios.post(`${API_URL}/signUp`, data).then(x => {
-      console.log(x)
-    }).catch(err => console.log(err))
+    axios.post(`${API_URL}/signUp`, data).then(res => {
+      addTokenToLocalStorage(res.data.token)
+      dispatch(signUpActionCreator(res.data));
+    }).catch(err => faillureSignupActionCreator(err.message))
   }
 }
 
 export function resetPassword(data) {
-  console.log(data);
   return dispatch => {
-    dispatch(resetPasswordActiobCreator(data));
-    axios.post(`${API_URL}/reset`, data).then(x => {
-      console.log(x)
-    }).catch(err => console.log(err))
+    axios.post(`${API_URL}/reset`, data).then(res => {
+      dispatch(resetPasswordActiobCreator(res.data));
+      addTokenToLocalStorage(res.data.token)
+    }).catch(err => dispatch(faillurePasswordResetActionCreator(err.message)));
   }
 }

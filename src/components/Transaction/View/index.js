@@ -45,7 +45,7 @@ class Transaction extends React.Component {
               return (
               <tr key={transaction.id}>
                 <td>{transaction.id}</td>
-                <td>{`${transaction.customer_first_name} ${transaction.customer_last_Name}`}</td>
+                <td>{`${transaction.customer_first_name} ${transaction.customer_last_name}`}</td>
                 <td>{transaction.access_code}</td>
                 <td>{transaction.Tasks[0].status}</td>
                 <td>{transaction.Tasks[0].assigned}</td>
