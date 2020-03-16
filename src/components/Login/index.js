@@ -11,9 +11,21 @@ class Login extends React.Component {
     this.state = {
       username: "",
       password: "",
+      user: {},
     }
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    return props.user
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+      if (nextState.login.id) {
+        this.props.history.push("/transactions");
+      }
+      return true;
   }
 
   onChange(e) {
@@ -25,7 +37,6 @@ class Login extends React.Component {
   onSubmit(e) {
     e.preventDefault();
     this.props.login(this.state);
-    // send to database for authentication
   }
 
   render() {
@@ -52,7 +63,6 @@ class Login extends React.Component {
             <input type="submit" value="Login" />
           </form>
           <div>Not registered? signup <Link to="/register"> here </Link></div>
-
           <div>Forget Password? reset <Link to="/reset"> here </Link></div>
         </fieldset>
       </div>

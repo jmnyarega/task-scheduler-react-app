@@ -3,7 +3,10 @@ import axios from "axios";
 import * as types from "../types";
 import { API_URL } from "../constants";
 
-import { addTokenToLocalStorage, removeLocalStorageToken } from "../helpers/auth";
+import {
+  addTokenToLocalStorage,
+  decodeUser,
+} from "../helpers/auth";
 
 const loginActionCreator = payload => ({
   type: types.LOGIN,
@@ -38,6 +41,11 @@ const faillureSignupActionCreator = message => ({
   message,
 });
 
+const userDetailsActionCreator = payload => ({
+  type: types.USER_DETAILS,
+  payload,
+});
+
 export function login(data) {
   return dispatch => {
     axios.post(`${API_URL}/login`, data).then(res => {
@@ -53,6 +61,13 @@ export function signUp(data) {
       addTokenToLocalStorage(res.data.token)
       dispatch(signUpActionCreator(res.data));
     }).catch(err => faillureSignupActionCreator(err.message))
+  }
+}
+
+export function userData() {
+  return dispatch => {
+    const user = decodeUser();
+    dispatch(userDetailsActionCreator({ user }));
   }
 }
 

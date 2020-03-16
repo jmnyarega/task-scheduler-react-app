@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 
+import NavBar from "../Navbar";
 import { resetPassword } from "../../actions/user";
 import "./index.css";
 
@@ -30,36 +31,39 @@ class ResetPassword extends React.Component {
 
   render() {
     return (
-      <div id="reset-form">
-        <fieldset>
-          <legend>Reset Password</legend>
-          <form onSubmit={this.onSubmit}>
+      <React.Fragment>
+        <NavBar />
+        <div id="reset-form">
+          <fieldset>
+            <legend>Reset Password</legend>
+            <form onSubmit={this.onSubmit}>
 
-            <label htmlFor="current_password">Current Password</label>
-            <input
-              type="password"
-              id="current_password"
-              name="current_password"
-              onChange={this.onChange}/><br />
+              <label htmlFor="current_password">Current Password</label>
+              <input
+                type="password"
+                id="current_password"
+                name="current_password"
+                onChange={this.onChange}/><br />
 
-            <label htmlFor="new_password">New Password</label>
-            <input
-              type="password"
-              id="new_password"
-              name="new_password"
-              onChange={this.onChange}/><br />
+              <label htmlFor="new_password">New Password</label>
+              <input
+                type="password"
+                id="new_password"
+                name="new_password"
+                onChange={this.onChange}/><br />
 
-            <label htmlFor="confirm_password">Confirm Password</label>
-            <input
-              type="password"
-              id="confirm_password"
-              name="confirm_password"
-              onChange={this.onChange}/><br />
+              <label htmlFor="confirm_password">Confirm Password</label>
+              <input
+                type="password"
+                id="confirm_password"
+                name="confirm_password"
+                onChange={this.onChange}/><br />
 
-            <input type="submit" value="Reset Password" />
-          </form>
-        </fieldset>
-      </div>
+              <input type="submit" value="Reset Password" />
+            </form>
+          </fieldset>
+        </div>
+      </React.Fragment>
     )
   }
 }

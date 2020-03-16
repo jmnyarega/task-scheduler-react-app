@@ -22,7 +22,6 @@ export const getAllTransactionsActionCreator = payload => ({
   payload,
 });
 
-
 export function addTransaction(data) {
   return dispatch => {
     http().post(`${API_URL}/transactions`, data).then(res => {

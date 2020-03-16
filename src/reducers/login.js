@@ -2,7 +2,7 @@ import * as types from "../types";
 
 const login = (state=[], action) => {
   switch(action.type) {
-    case types.LOGIN: 
+    case types.LOGIN:
       return {
         ...state,
         ...action.payload,
@@ -12,6 +12,11 @@ const login = (state=[], action) => {
       return {
         ...state,
           messages: (state.message || {})[login] = action.message,
+      }
+     case types.USER_DETAILS:
+      return {
+        ...state,
+        ...action.payload,
       }
     default:
       return state;

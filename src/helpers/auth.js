@@ -1,4 +1,5 @@
 import axios from "axios";
+import jwtDecode from "jwt-decode";
 
 export const addTokenToLocalStorage = token => {
   const { localStorage } = window;
@@ -16,3 +17,9 @@ export const http = () => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
   return axios;
 }
+
+export const decodeUser = () => {
+  const token = localStorage.getItem("jwt");
+  const user = token ? jwtDecode(token) : {};
+  return user;
+};
