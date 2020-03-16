@@ -17,25 +17,24 @@ export const updateTransaction = id => ({
   id
 });
 
-export const getAllTransactionsActionCreator = () => ({
+export const getAllTransactionsActionCreator = payload => ({
   type: types.GET_ALL_TRANSACTIONS,
+  payload,
 });
 
 
 export function addTransaction(data) {
   return dispatch => {
-    dispatch(addTransactionActionCreator(data));
-    http().post(`${API_URL}/transactions`, { ...data, ...{ user_id: 1} }).then(res => {
-      console.log(res.data.token)
+    http().post(`${API_URL}/transactions`, data).then(res => {
+        dispatch(addTransactionActionCreator(data));
     }).catch(err => console.log(err))
   }
 }
 
-export function getAllTransactions() {
+export function getAllTransactions(page=1, limit=5, order="createdAt") {
   return dispatch => {
-    dispatch(getAllTransactionsActionCreator());
     http().get(`${API_URL}/transactions`).then(res => {
-      console.log(res.data.token)
+      dispatch(getAllTransactionsActionCreator(res.data.data));
     }).catch(err => console.log(err))
   }
 }

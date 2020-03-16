@@ -12,3 +12,27 @@
 #transaction-info > p, #customer-info > p {
   font-weight: bold;
 }
+
+#transaction-table {
+  border-collapse: collapse;
+  width: 100%
+}
+
+#transaction-table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+#transaction-table th, #transaction-table td {
+  border: 1px solid #dcdcdc;
+  padding: 8px;
+}
+
+#details {
+  display: flex;
+  justify-content: space-between;
+}
+
+#single-transaction {
+  width: 50%;
+}

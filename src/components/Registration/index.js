@@ -67,7 +67,8 @@ class Registration extends React.Component {
 
             <input type="submit" value="Register" />
           </form>
-          <div>Already registered? login <Link to="/transaction"> here </Link></div>
+          <div>Already registered? login <Link to="/transactions"> here </Link></div>
+          <div>Already registered? login <Link to="/add"> here </Link></div>
         </fieldset>
       </div>
     )

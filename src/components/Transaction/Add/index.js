@@ -1,11 +1,11 @@
 import React from "react";
 import { connect } from 'react-redux'
 
-import { addTransaction } from "../../actions/transactions";
+import { addTransaction } from "../../../actions/transactions";
 
-import "./index.css";
+import "../index.css";
 
-class Transaction extends React.Component {
+class AddTransaction extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -19,6 +19,7 @@ class Transaction extends React.Component {
       customer_first_name: "",
       customer_last_name: "",
       customer_age: 0,
+      user_id: 1,
     }
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -32,6 +33,7 @@ class Transaction extends React.Component {
 
   onSubmit(e) {
     e.preventDefault();
+    console.log(this.state);
     this.props.addTransaction(this.state);
   }
 
@@ -136,4 +138,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Transaction)
+export default connect(mapStateToProps, mapDispatchToProps)(AddTransaction)
