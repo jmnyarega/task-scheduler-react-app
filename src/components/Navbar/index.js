@@ -7,7 +7,6 @@ const NavBar = () => {
         <div>
          <Link to="/transactions"> Transactions </Link> |
          <Link to="/add"> New Transactions </Link> |
-         <Link to="/reset">Reset Password</Link> |
          <Link to="/logout"> Logout </Link>
         </div>
         <hr />

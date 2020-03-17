@@ -12,7 +12,7 @@ class ResetPassword extends React.Component {
       current_password: "",
       new_password: "",
       confirm_password: "",
-      id: 0,
+      username:"",
       message: "",
     }
     this.onChange = this.onChange.bind(this);
@@ -22,8 +22,15 @@ class ResetPassword extends React.Component {
   static getDerivedStateFromProps(props, state) {
     return {
       message: props.user.resetPassword.message,
-      id: props.user.login.user.id
     }
+  }
+
+
+  shouldComponentUpdate(nextProps, nextState) {
+    if (nextState.message === "reset successful") {
+      this.props.history.push("/transactions");
+    }
+    return true;
   }
 
   onChange(e) {
@@ -45,6 +52,12 @@ class ResetPassword extends React.Component {
           <fieldset>
             <legend>Reset Password</legend>
             <form onSubmit={this.onSubmit}>
+              <label htmlFor="current_password">Username</label>
+              <input
+                type="text"
+                id="username"
+                name="username"
+                onChange={this.onChange}/><br />
 
               <label htmlFor="current_password">Current Password</label>
               <input

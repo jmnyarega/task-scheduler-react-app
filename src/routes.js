@@ -33,7 +33,6 @@ class Routes extends React.Component {
       <Switch>
         <Route component={AddTransaction} path="/add" />
         <Route component={TransactionDetails} path="/details" />
-        <Route component={ResetPassword} path="/reset" />
         <Route component={Transaction} exact path="/transactions" />
         <Route component={Logout} path="/logout" />
       </Switch>
@@ -43,6 +42,7 @@ class Routes extends React.Component {
    publicRoutes() {
     return (
       <Switch>
+        <Route component={ResetPassword} path="/reset" />
         <Route component={Login} exact path="/" />
         <Route component={Registration} path="/register" />
       </Switch>
