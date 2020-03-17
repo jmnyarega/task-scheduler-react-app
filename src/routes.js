@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { userData } from "./actions/user"
 
 import Login from "./components/Login";
+import Logout from "./components/Logout";
 import Registration from "./components/Registration";
 import Transaction from "./components/Transaction/View";
 import AddTransaction from "./components/Transaction/Add";
@@ -34,6 +35,7 @@ class Routes extends React.Component {
         <Route component={TransactionDetails} path="/details" />
         <Route component={ResetPassword} path="/reset" />
         <Route component={Transaction} exact path="/transactions" />
+        <Route component={Logout} path="/logout" />
       </Switch>
     )
   }

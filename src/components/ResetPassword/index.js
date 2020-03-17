@@ -12,7 +12,7 @@ class ResetPassword extends React.Component {
       current_password: "",
       new_password: "",
       confirm_password: "",
-      id: 1,
+      id: 0,
       message: "",
     }
     this.onChange = this.onChange.bind(this);
@@ -20,7 +20,10 @@ class ResetPassword extends React.Component {
   }
 
   static getDerivedStateFromProps(props, state) {
-    return { message: props.user.resetPassword.message };
+    return {
+      message: props.user.resetPassword.message,
+      id: props.user.login.user.id
+    }
   }
 
   onChange(e) {
@@ -35,7 +38,6 @@ class ResetPassword extends React.Component {
   }
 
   render() {
-    console.log(this.state);
     return (
       <React.Fragment>
         <NavBar />

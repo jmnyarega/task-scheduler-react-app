@@ -18,6 +18,11 @@ const login = (state=[], action) => {
         ...state,
         ...action.payload,
       }
+    case types.LOGOUT:
+        return {
+          ...state,
+          user: {}
+        }
     default:
       return state;
   }

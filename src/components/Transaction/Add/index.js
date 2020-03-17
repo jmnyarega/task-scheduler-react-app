@@ -20,7 +20,7 @@ class AddTransaction extends React.Component {
       customer_first_name: "",
       customer_last_name: "",
       customer_age: 0,
-      user_id: 1,
+      user_id: 0,
       message: "",
     }
     this.onChange = this.onChange.bind(this);
@@ -34,7 +34,10 @@ class AddTransaction extends React.Component {
   }
 
   static getDerivedStateFromProps(props, state) {
-    return { message: props.transactions.addTransaction && props.transactions.addTransaction.message };
+    return {
+      message: props.transactions.addTransaction && props.transactions.addTransaction.message,
+      user_id: props.transactions.login.user.id
+    };
   }
 
   onSubmit(e) {
@@ -43,6 +46,7 @@ class AddTransaction extends React.Component {
   }
 
   render() {
+    console.log(this.state)
     return (
       <React.Fragment>
         <NavBar />

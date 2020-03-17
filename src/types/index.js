@@ -10,3 +10,4 @@ export const FAIL_RESET           = "FAIL_RESET";
 export const FAIL_SIGNUP          = "FAIL_SIGNUP";
 export const FAIL_ADD_TRANSACTION = "FAIL_ADD_TRANSACTION";
 export const USER_DETAILS         = "USER_DETAILS";
+export const LOGOUT               = "LOGOUT";

@@ -6,6 +6,7 @@ import { API_URL } from "../constants";
 import {
   addTokenToLocalStorage,
   decodeUser,
+  removeLocalStorageToken,
 } from "../helpers/auth";
 
 const loginActionCreator = payload => ({
@@ -46,6 +47,10 @@ const userDetailsActionCreator = payload => ({
   payload,
 });
 
+const logoutActionCreator = () => ({
+  type: types.LOGOUT,
+})
+
 export function login(data) {
   return dispatch => {
     axios.post(`${API_URL}/login`, data).then(res => {
@@ -68,6 +73,13 @@ export function userData() {
   return dispatch => {
     const user = decodeUser();
     dispatch(userDetailsActionCreator({ user }));
+  }
+}
+
+export function logout() {
+  return dispatch => {
+    removeLocalStorageToken();
+    dispatch(logoutActionCreator());
   }
 }
 
