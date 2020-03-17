@@ -6,12 +6,12 @@ const login = (state=[], action) => {
       return {
         ...state,
         ...action.payload,
-          messages: (state.message || {})[login] = action.message,
+          message: action.message,
       }
      case types.FAIL_LOGIN:
       return {
         ...state,
-          messages: (state.message || {})[login] = action.message,
+          message: action.message,
       }
      case types.USER_DETAILS:
       return {

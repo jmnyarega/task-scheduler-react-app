@@ -27,7 +27,7 @@ class Routes extends React.Component {
     return props.user;
   }
 
-   protectedRoutes() {
+  protectedRoutes() {
     return (
       <Switch>
         <Route component={AddTransaction} path="/add" />

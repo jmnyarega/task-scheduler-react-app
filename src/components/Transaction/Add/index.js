@@ -21,6 +21,7 @@ class AddTransaction extends React.Component {
       customer_last_name: "",
       customer_age: 0,
       user_id: 1,
+      message: "",
     }
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -32,9 +33,12 @@ class AddTransaction extends React.Component {
     });
   }
 
+  static getDerivedStateFromProps(props, state) {
+    return { message: props.transactions.addTransaction && props.transactions.addTransaction.message };
+  }
+
   onSubmit(e) {
     e.preventDefault();
-    console.log(this.state);
     this.props.addTransaction(this.state);
   }
 
@@ -124,6 +128,7 @@ class AddTransaction extends React.Component {
                 </div>
               </div>
               <input type="submit" value="Add Transaction" />
+              <p> {this.state.message  && this.state.message } </p>
             </form>
           </fieldset>
         </div>

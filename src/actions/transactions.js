@@ -2,31 +2,29 @@ import * as types from "../types";
 import { API_URL } from "../constants";
 import { http } from "../helpers/auth";
 
-const addTransactionActionCreator = payload => ({
+const addTransactionActionCreator = message => ({
   type: types.ADD_TRANSACTION,
-  payload,
+  message,
 });
 
-export const deleteTransaction = id => ({
-  type: types.DELETE_TRANSACTION,
-  id
-});
-
-export const updateTransaction = id => ({
-  type: types.UPDATE_TRANSACTION,
-  id
-});
-
-export const getAllTransactionsActionCreator = payload => ({
+const getAllTransactionsActionCreator = payload => ({
   type: types.GET_ALL_TRANSACTIONS,
   payload,
 });
 
+const addTransactionFaillure = () => ({
+  type: types.FAIL_ADD_TRANSACTION,
+  message: "Transaction Faillure"
+})
+
 export function addTransaction(data) {
   return dispatch => {
     http().post(`${API_URL}/transactions`, data).then(res => {
-        dispatch(addTransactionActionCreator(data));
-    }).catch(err => console.log(err))
+        dispatch(addTransactionActionCreator("Transaction Added"));
+    }).catch(err => {
+      console.log(err);
+      dispatch(addTransactionFaillure(err.message))
+    });
   }
 }
 

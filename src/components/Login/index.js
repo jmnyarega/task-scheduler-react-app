@@ -11,21 +11,21 @@ class Login extends React.Component {
     this.state = {
       username: "",
       password: "",
-      user: {},
+      message: "",
     }
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
 
   static getDerivedStateFromProps(props, state) {
-    return props.user
+    return { message: props.user.login && props.user.login.message };
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-      if (nextState.login.id) {
-        this.props.history.push("/transactions");
-      }
-      return true;
+    if (nextState.message === "login successful") {
+      this.props.history.push("/transactions");
+    }
+    return true;
   }
 
   onChange(e) {
@@ -47,20 +47,21 @@ class Login extends React.Component {
           <form onSubmit={this.onSubmit}>
 
             <label htmlFor="username">Username </label>
-              <input
-                type="text"
-                id="username"
-                name="username"
-                onChange={this.onChange}/> <br />
+            <input
+              type="text"
+              id="username"
+              name="username"
+              onChange={this.onChange}/> <br />
 
             <label htmlFor="password">Password </label>
-              <input
-                type="password"
-                id="password"
-                name="password"
-                onChange={this.onChange}/> <br />
+            <input
+              type="password"
+              id="password"
+              name="password"
+              onChange={this.onChange}/> <br />
 
             <input type="submit" value="Login" />
+            <p> {this.state.message  && this.state.message } </p>
           </form>
           <div>Not registered? signup <Link to="/register"> here </Link></div>
           <div>Forget Password? reset <Link to="/reset"> here </Link></div>

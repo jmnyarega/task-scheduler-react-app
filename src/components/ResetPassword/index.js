@@ -13,9 +13,14 @@ class ResetPassword extends React.Component {
       new_password: "",
       confirm_password: "",
       id: 1,
+      message: "",
     }
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    return { message: props.user.resetPassword.message };
   }
 
   onChange(e) {
@@ -30,6 +35,7 @@ class ResetPassword extends React.Component {
   }
 
   render() {
+    console.log(this.state);
     return (
       <React.Fragment>
         <NavBar />
@@ -60,6 +66,7 @@ class ResetPassword extends React.Component {
                 onChange={this.onChange}/><br />
 
               <input type="submit" value="Reset Password" />
+              <p> {this.state.message  && this.state.message } </p>
             </form>
           </fieldset>
         </div>
