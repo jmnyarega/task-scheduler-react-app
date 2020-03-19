@@ -1,4 +1,4 @@
-import addTransaction from "../../../src/reducers/addTransaction";
+import addTransaction from "../../src/reducers/addTransaction";
 
 describe("Add Transaction Reducer", () => {
   const data = {

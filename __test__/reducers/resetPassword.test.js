@@ -1,4 +1,4 @@
-import resetPassword from "../../../src/reducers/resetPassword";
+import resetPassword from "../../src/reducers/resetPassword";
 
 describe("#resetPassword", () => {
   const data = {

@@ -1,4 +1,4 @@
-import signUp from "../../../src/reducers/signUp";
+import signUp from "../../src/reducers/signUp";
 
 describe("#signUp", () => {
   const data = {

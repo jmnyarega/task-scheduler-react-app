@@ -1,4 +1,4 @@
-import transactions from "../../../src/reducers/getAllTransactions";
+import transactions from "../../src/reducers/getAllTransactions";
 
 describe("Get Transaction Reducer", () => {
   const initialState = [ { id: 1, mpesa: 1 } ];

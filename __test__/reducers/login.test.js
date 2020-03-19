@@ -1,4 +1,4 @@
-import login from "../../../src/reducers/login";
+import login from "../../src/reducers/login";
 
 describe("#login", () => {
   const data = {
