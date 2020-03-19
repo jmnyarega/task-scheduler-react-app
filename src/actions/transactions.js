@@ -2,36 +2,36 @@ import * as types from "../types";
 import { API_URL } from "../constants";
 import { http } from "../helpers/auth";
 
-const addTransactionActionCreator = message => ({
-  type: types.ADD_TRANSACTION,
+export const addTransactionActionCreator = (message, type=types.ADD_TRANSACTION) => ({
+  type,
   message,
 });
 
-const getAllTransactionsActionCreator = payload => ({
-  type: types.GET_ALL_TRANSACTIONS,
+export const getAllTransactionsActionCreator = (payload, type=types.GET_ALL_TRANSACTIONS) => ({
+  type,
   payload,
 });
 
-const addTransactionFaillure = () => ({
-  type: types.FAIL_ADD_TRANSACTION,
-  message: "Transaction Faillure"
+export const addTransactionFailure = (message="Transaction Failure", type=types.FAIL_ADD_TRANSACTION) => ({
+  type,
+  message,
 })
 
 export function addTransaction(data) {
   return dispatch => {
-    http().post(`${API_URL}/transactions`, data).then(res => {
+    return http().post(`${API_URL}/transactions`, data).then(res => {
         dispatch(addTransactionActionCreator("Transaction Added"));
     }).catch(err => {
-      console.log(err);
-      dispatch(addTransactionFaillure(err.message))
+      dispatch(addTransactionFailure(err.message))
     });
   }
 }
 
 export function getAllTransactions(page=1, limit=5, order="createdAt") {
   return dispatch => {
-    http().get(`${API_URL}/transactions`).then(res => {
-      dispatch(getAllTransactionsActionCreator(res.data.data));
+    return http().get(`${API_URL}/transactions`).then(res => {
+      const data = res.data && res.data.data
+      dispatch(getAllTransactionsActionCreator(data));
     }).catch(err => console.log(err))
   }
 }
