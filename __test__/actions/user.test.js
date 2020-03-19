@@ -31,7 +31,6 @@ describe("User Action Creators", () => {
     expect(payload.type).toBe("SIGNUP");
   });
 
-
   it("#resetPasswordActionCreator: should return payload with ACTION & payload", () => {
     const payload = resetPasswordActionCreator({ name: "john"}, "RESET_PASSWORD", "sign up successful");
     expect(payload.payload.name).toBe("john");
@@ -102,7 +101,11 @@ describe("User Actions", () => {
       request.respondWith(response);
     });
     const expectedActions = [
-      { message: response.message, type: "SIGNUP", payload: response.response }
+      {
+        message: response.message,
+        type: "SIGNUP",
+        payload: response.response,
+      }
     ];
     const store = makeMockStore({ user: [] });
 
@@ -115,7 +118,11 @@ describe("User Actions", () => {
   it('#userData', () => {
     const response = { status: 200, response: { user } };
     const expectedActions = [
-      { message: response.message, type: "USER_DETAILS", payload: response.response }
+      {
+        message: response.message,
+        type: "USER_DETAILS",
+        payload: response.response,
+      }
     ];
     const store = makeMockStore({ user: [] });
     store.dispatch(userData(user));
@@ -138,7 +145,11 @@ describe("User Actions", () => {
       request.respondWith(response);
     });
     const expectedActions = [
-      { message: response.message, type: "RESET_PASSWORD", payload: response.response }
+      {
+        message: response.message,
+        type: "RESET_PASSWORD",
+        payload: response.response,
+      }
     ];
     const store = makeMockStore({ user: [] });
     return store.dispatch(resetPassword(user)).then(() => {
