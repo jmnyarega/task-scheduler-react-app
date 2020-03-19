@@ -9,69 +9,51 @@ import {
   removeLocalStorageToken,
 } from "../helpers/auth";
 
-const loginActionCreator = payload => ({
-  type: types.LOGIN,
-  payload,
-  message: "login successful",
-});
+const user = decodeUser();
 
-const signUpActionCreator = payload => ({
-  type: types.SIGNUP,
-  payload,
-  message: "sign up successful",
-});
+export const loginActionCreator = (payload, type=types.LOGIN, message="login successful") =>
+  ({ type, payload, message });
 
-const resetPasswordActiobCreator = payload => ({
-  type: types.RESET_PASSWORD,
-  payload,
-  message: "reset successful",
-});
+export const signUpActionCreator = (payload, type=types.SIGNUP, message="sign up successful") =>
+  ({ type, payload, message });
 
-const faillureLoginActionCreator = message => ({
-  type: types.FAIL_LOGIN,
-  message,
-});
+export const resetPasswordActionCreator = (payload, type=types.RESET_PASSWORD, message="reset successful") =>
+  ({ type, payload, message });
 
-const faillurePasswordResetActionCreator = message => ({
-  type: types.FAIL_RESET,
-  message,
-});
+export const failureLoginActionCreator = (message, type=types.FAIL_LOGIN) =>
+  ({ type, message });
 
-const faillureSignupActionCreator = message => ({
-  type: types.FAIL_SIGNUP,
-  message,
-});
+export const failurePasswordResetActionCreator = (message, type=types.FAIL_RESET) =>
+  ({ message, type });
 
-const userDetailsActionCreator = payload => ({
-  type: types.USER_DETAILS,
-  payload,
-});
+export const failureSignupActionCreator = (message, type=types.FAIL_SIGNUP) =>
+  ({ type, message });
 
-const logoutActionCreator = () => ({
-  type: types.LOGOUT,
-})
+export const userDetailsActionCreator = (payload, type=types.USER_DETAILS) =>
+  ({ type, payload });
+
+export const logoutActionCreator = (type=types.LOGOUT) => ({ type });
 
 export function login(data) {
   return dispatch => {
-    axios.post(`${API_URL}/login`, data).then(res => {
+    return axios.post(`${API_URL}/login`, data).then(res => {
       addTokenToLocalStorage(res.data.token)
       dispatch(loginActionCreator(res.data.user));
-    }).catch(err => dispatch(faillureLoginActionCreator(err.message)))
+    }).catch(err => dispatch(failureLoginActionCreator(err.message)))
   }
 }
 
 export function signUp(data) {
   return dispatch => {
-    axios.post(`${API_URL}/signUp`, data).then(res => {
+    return axios.post(`${API_URL}/signUp`, data).then(res => {
       addTokenToLocalStorage(res.data.token)
       dispatch(signUpActionCreator(res.data));
-    }).catch(err => faillureSignupActionCreator(err.message))
+    }).catch(err => failureSignupActionCreator(err.message))
   }
 }
 
-export function userData() {
+export function userData(user=user) {
   return dispatch => {
-    const user = decodeUser();
     dispatch(userDetailsActionCreator({ user }));
   }
 }
@@ -85,9 +67,9 @@ export function logout() {
 
 export function resetPassword(data) {
   return dispatch => {
-    axios.post(`${API_URL}/reset`, data).then(res => {
-      dispatch(resetPasswordActiobCreator(res.data));
+    return axios.post(`${API_URL}/reset`, data).then(res => {
+      dispatch(resetPasswordActionCreator(res.data));
       addTokenToLocalStorage(res.data.token)
-    }).catch(err => dispatch(faillurePasswordResetActionCreator(err.message)));
+    }).catch(err => dispatch(failurePasswordResetActionCreator(err.message)));
   }
 }
